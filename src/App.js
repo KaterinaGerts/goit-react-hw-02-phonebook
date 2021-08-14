@@ -8,7 +8,7 @@ import ContactForm from 'components/ContactForm/ContactForm';
 class App extends Component {
   state = {
     contacts: [],
-    name: ''
+    
   }
 
   
@@ -19,7 +19,7 @@ class App extends Component {
       <Container>
       <div>
       <h1>Phonebook</h1>
-      <ContactForm/>
+      <ContactForm />
      
       <h2>Contacts</h2>
       {/* <Filter ... />

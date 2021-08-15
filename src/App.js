@@ -7,19 +7,20 @@ import ContactForm from 'components/ContactForm/ContactForm';
 
 class App extends Component {
   state = {
-    contacts: [],
-    
+    contacts: [],    
   }
 
+  formSubmitHandler = data => {
+    console.log(data);
+  }
   
   render() {
-    // const {name} = this.state;    
-
+    
     return (
       <Container>
       <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm onSubmit={this.formSubmitHandler}/>
      
       <h2>Contacts</h2>
       {/* <Filter ... />

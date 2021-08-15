@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import s from './ContactForm.module.css';
 import PropTypes from 'prop-types';
-//import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 class ContactForm extends Component {
   state = {
@@ -11,18 +11,22 @@ class ContactForm extends Component {
 
   handleChange = e => {
     const { name, value } = e.currentTarget;
-
     this.setState({ [name]: value });
   };
 
-  handleSubmit(e) {
+  handleSubmit =e => {
     e.preventDefault();
 
-    this.setState({ name: '', number: '' });
-  }
+    this.props.onSubmit(this.state);
+    this.reset();
+  };
 
-  // inputNameId = uuidv4();
-  // inputNunberId = uuidv4();
+  reset = () => {
+    this.setState({name: '', number: '',});
+  };
+
+  inputNameId = uuidv4();
+  inputNunberId = uuidv4();
 
   render() {
     const { name, number } = this.state;
@@ -36,7 +40,8 @@ class ContactForm extends Component {
             type="text"
             name="name"
             value={name}
-            onCange={this.handleChange}
+            onChange={this.handleChange}
+            id={this.inputNameId}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
@@ -49,7 +54,7 @@ class ContactForm extends Component {
             type="tel"
             name="number"
             value={number}
-            onCange={this.handleChange}
+            onChange={this.handleChange}
             id={this.inputNunberId}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"

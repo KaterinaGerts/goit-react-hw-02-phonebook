@@ -1,7 +1,5 @@
 .container {
-  max-width: 1240px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1240px;  
   padding: 20px;  
   background-color: rgb(63, 197, 152);
   text-align: center;

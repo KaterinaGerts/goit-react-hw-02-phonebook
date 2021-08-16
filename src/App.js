@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Container from 'components/Container/Container';
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
-// import Filter from 'components/Filter/Filter';
+import Filter from 'components/Filter/Filter';
 import { v4 as uuidv4 } from 'uuid';
 
 class App extends Component {
@@ -48,7 +48,7 @@ addContact = ({name, number}) => {
           />
 
           <h2>Contacts</h2>
-          {/* <Filter />  */}
+          <Filter/>  
           <ContactList          
             contacts={this.state.contacts}
             onDeleteContact={this.deleteContact}

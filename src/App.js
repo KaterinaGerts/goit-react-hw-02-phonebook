@@ -26,10 +26,14 @@ addContact = ({name, number}) => {
       name,
       number,
     };
-
+   const {contacts} = this.state;
+   contacts.map(contact => contact.name).includes(name) ? (
+    alert (`${name} is already in contacts!`)
+   ) : (
     this.setState(({contacts}) => ({
       contacts: [...contacts, data],
-    }));
+    }))
+   )    
   };
 
   deleteContact = contactId => {
@@ -38,7 +42,21 @@ addContact = ({name, number}) => {
     }));
   };
 
+  changeFilter =(e) => {
+    this.setState({filter: e.currentTarget.value});
+  };
+
+  getVisibleContacts = ()=> {
+    const {contacts, filter} = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+  }
+
   render() {
+    const {filter} = this.state;
+    const visibleContacts = this.getVisibleContacts();
+
     return (
       <Container>
         <div>
@@ -48,9 +66,9 @@ addContact = ({name, number}) => {
           />
 
           <h2>Contacts</h2>
-          <Filter/>  
+          <Filter value={filter} onChange={this.changeFilter}/>  
           <ContactList          
-            contacts={this.state.contacts}
+            contacts={visibleContacts}
             onDeleteContact={this.deleteContact}
           />
         </div>

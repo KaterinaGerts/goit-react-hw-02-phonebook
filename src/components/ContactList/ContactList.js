@@ -6,8 +6,14 @@ export default function ContactList({ contacts, onDeleteContact }) {
     <ul className={s.contactList}>
       {contacts.map(({ name, number, id }) => (
         <li className={s.name} key={id}>
-          {name}: <span className={s.number}>{number}</span>  
-          <button type="button" className={s.button} onClick={() => onDeleteContact(id)}>Delete</button>
+          {name}: <span className={s.number}>{number}</span>
+          <button
+            type="button"
+            className={s.button}
+            onClick={() => onDeleteContact(id)}
+          >
+            Delete
+          </button>
         </li>
       ))}
     </ul>
@@ -15,9 +21,11 @@ export default function ContactList({ contacts, onDeleteContact }) {
 }
 
 ContactList.propTypes = {
-    contacts: PropTypes.arrayOf(
+  contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,        
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.number.isRequired,
     }),
-  ),
+  )
 };

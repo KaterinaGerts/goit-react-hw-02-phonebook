@@ -27,7 +27,9 @@ addContact = ({name, number}) => {
       number,
     };
    const {contacts} = this.state;
-   contacts.map(contact => contact.name).includes(name) ? (
+   const nameNormalize = name.toLowerCase();
+   
+   contacts.map(contact => contact.name.toLowerCase()).includes(nameNormalize) ? (
     alert (`${name} is already in contacts!`)
    ) : (
     this.setState(({contacts}) => ({

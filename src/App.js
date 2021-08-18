@@ -28,8 +28,10 @@ addContact = ({name, number}) => {
     };
    const {contacts} = this.state;
    const nameNormalize = name.toLowerCase();
-   
-   contacts.map(contact => contact.name.toLowerCase()).includes(nameNormalize) ? (
+
+  const checkedName = contacts.find(contact => nameNormalize===contact.name.toLowerCase());
+
+  checkedName ? (
     alert (`${name} is already in contacts!`)
    ) : (
     this.setState(({contacts}) => ({
